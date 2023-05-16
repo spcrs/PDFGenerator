@@ -74,7 +74,8 @@ async function main(header,rows) {
 
   doc
     .moveDown(1)
-    .text("To\n\n");
+    .text("To")
+    .moveDown(1.2);
 
   for(let i of header.to){
     doc
@@ -98,14 +99,7 @@ async function main(header,rows) {
 
   doc.text('With reference to the above, I am to inform that the transfer approval, in respect of the following student, is accorded for the academic year 2022-2023.',{indent:30,lineGap:1})
   
-  doc.addPage()
   doc.moveDown(3);
-  
-  await createTable(doc,rows)
-
-  if(doc.y > 550)
-    doc.addPage()
-  doc.fontSize(11)
   
   doc.text("Yours faithfully\n\n\n",70,550 ,{align:'right'}); 
 
@@ -115,6 +109,12 @@ async function main(header,rows) {
 
   doc.font("font_family/arial.TTF");
   doc.text("1. The Controller of Examinations,\nAnna University, Chennai – 25.\n2. Stock File")
+  
+  await createTable(doc,rows)
+
+  // if(doc.y > 550)
+  //   doc.addPage()
+  // doc.fontSize(11)
   
   doc.end();
 }
